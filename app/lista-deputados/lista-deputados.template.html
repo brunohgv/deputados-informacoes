@@ -1,0 +1,58 @@
+    <div class="row">
+      <div class="col-sm-6" ng-repeat="deputado in deputados">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <img class="card-img-top" src="{{deputado.urlFoto}}" alt="Card image cap">
+              </div>
+              <div class="col-md-6">
+                <h5 class="card-title">{{deputado.nome}}</h5>
+                <p class="card-text"><strong>{{deputado.siglaPartido}} - {{deputado.siglaUf}}</strong></p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deputadoDetalhes" ng-click="carregarDeputadoSelecionado(deputado.uri)">Mais Detalhes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <button type="button" class="btn btn-primary" ng-click="prevPage()">Anterior</button>
+      <button type="button" class="btn btn-primary" ng-click="nextPage()">Próxima</button>
+    </div>
+      
+    <!-- Modal -->
+    <div class="modal fade" id="deputadoDetalhes" tabindex="-1" role="dialog" aria-labelledby="deputadoDetalhes" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deputadoDetalhes">{{deputadoSelecionado.ultimoStatus.nome}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row justify-content-center">
+              <img src="{{deputadoSelecionado.ultimoStatus.urlFoto}}" alt="" srcset=""> <br />
+            </div>
+            <strong>Nome Civil: </strong>{{deputadoSelecionado.nomeCivil}} <br />
+            <strong>Data de Nascimento: </strong>{{deputadoSelecionado.dataNascimento | date : 'dd/MM/yyyy'}} <br />
+            <strong>Partido: </strong>{{deputadoSelecionado.ultimoStatus.siglaPartido}} <br />
+            <strong>Estado: </strong>{{deputadoSelecionado.ultimoStatus.siglaUf}} <br />
+            <strong>Escolaridade: </strong>{{deputadoSelecionado.escolaridade}} <br />
+            <strong>Gabinete: </strong>
+            <ul>
+              <li><strong>Número: </strong>{{deputadoSelecionado.ultimoStatus.gabinete.nome}}</li>
+              <li><strong>Prédio: </strong>{{deputadoSelecionado.ultimoStatus.gabinete.predio}}</li>
+              <li><strong>Sala: </strong>{{deputadoSelecionado.ultimoStatus.gabinete.sala}}</li>
+              <li><strong>Andar: </strong>{{deputadoSelecionado.ultimoStatus.gabinete.andar}}</li>
+              <li><strong>Telefone: </strong>{{deputadoSelecionado.ultimoStatus.gabinete.telefone}}</li>
+              <li><strong>Email: </strong>{{deputadoSelecionado.ultimoStatus.gabinete.email}}</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>

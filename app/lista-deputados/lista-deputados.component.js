@@ -1,8 +1,11 @@
 angular
-  .module('angularQuiz')
-  .controller('listCtrl', ListController)
+  .module('listaDeputados')
+  .component('listaDeputados', {
+    templateUrl: '/app/lista-deputados/lista-deputados.template.html',
+    controller: ['$scope', '$http', ListaDeputadosController]
+  })
 
-  function ListController ($scope, $http) {
+  function ListaDeputadosController ($scope, $http) {
     var self = this
     
     $scope.Title = 'Meu titulo'
